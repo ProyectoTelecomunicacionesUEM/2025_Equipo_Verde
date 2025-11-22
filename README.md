@@ -15,6 +15,8 @@
 7. Ya tenemos lista la aplicación web.
 
 
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
 ## 3. Variables locales
 1. Crea `.env.local` (no se comitea) con las mismas variables que en Vercel. Puedes hacer lo mismo que pasos 2 y 4 de antes. Importante que sea el mismo AUTH_SECRET y la misma DATABASE_URL.
 2. Puedes incluir también `POSTGRES_URL`, etc. Next.js lee `.env.local` automáticamente.
