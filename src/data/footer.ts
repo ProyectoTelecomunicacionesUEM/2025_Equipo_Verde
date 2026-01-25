@@ -7,23 +7,27 @@ export const footerDetails: {
     telephone: string;
     socials: ISocials;
 } = {
-    subheading: "Empowering businesses with cutting-edge financial technology solutions.",
+    subheading: "Bienestar animal inteligente: ¡Tú eliges los servicios, tú controlas el coste!.",
     quickLinks: [
         {
-            text: "Features",
-            url: "#features"
+        text: "Mascotas",
+        url: "#mascotas"
         },
         {
-            text: "Pricing",
-            url: "#pricing"
+            text: "Granjas",
+            url: "#granjas"
         },
         {
-            text: "Testimonials",
-            url: "#testimonials"
+            text: "Exóticos",
+            url: "#exoticos"
+        },
+        {
+            text: "Salvajes",
+            url: "#salvajes"
         }
     ],
-    email: 'address@yoursite.com',
-    telephone: '+1 (123) 456-7890',
+    email: 'contacto@mypetplan.com',
+    telephone: '+34 912345678',
     socials: {
         // github: 'https://github.com',
         // x: 'https://twitter.com/x',
