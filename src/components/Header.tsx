@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { Transition } from '@headlessui/react';
@@ -12,6 +13,8 @@ import { menuItems } from '@/data/menuItems';
 
 const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const pathname = usePathname();
+    const isLoginDisabled = pathname === '/welcome' || pathname?.startsWith('/dashboard');
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -44,10 +47,10 @@ const Header: React.FC = () => {
                         <li>
                             <Link
                                 href="/login"
-                                className="text-black bg-primary hover:bg-primary-accent px-8 py-3 rounded-full transition-colors flex items-center gap-2"
+                                className={`text-black bg-primary hover:bg-primary-accent px-8 py-3 rounded-full transition-colors flex items-center gap-2 ${isLoginDisabled ? 'opacity-50 pointer-events-none' : ''}`}
                             >
                                 <HiUser className="w-5 h-5" />
-                                Login
+                                {isLoginDisabled ? 'Logueado' : 'Login'}
                             </Link>
                         </li>
                     </ul>
@@ -94,11 +97,11 @@ const Header: React.FC = () => {
                         <li>
                             <Link
                                 href="/login"
-                                className="text-black bg-primary hover:bg-primary-accent px-5 py-2 rounded-full w-fit flex items-center gap-2"
+                                className={`text-black bg-primary hover:bg-primary-accent px-5 py-2 rounded-full w-fit flex items-center gap-2 ${isLoginDisabled ? 'opacity-50 pointer-events-none' : ''}`}
                                 onClick={toggleMenu}
                             >
                                 <HiUser className="w-5 h-5" />
-                                Login
+                                {isLoginDisabled ? 'Logueado' : 'Login'}
                             </Link>
                         </li>
                     </ul>

@@ -67,7 +67,7 @@ export default async function WelcomePage() {
         </div>
         <div className="rounded-xl border border-gray-200 bg-white/60 p-3 shadow-sm flex items-center justify-center">
           <Link
-            href="/dispositivos"
+            href="/dashboard?section=dispositivos"
             className="bg-primary text-black px-4 py-3 rounded-full font-semibold hover:bg-primary-accent transition-colors w-full flex items-center justify-center text-sm"
           >
             <FaPaw className="mr-2" /> Activar Dispositivo
