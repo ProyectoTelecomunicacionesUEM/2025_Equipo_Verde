@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS Animales (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   nombre TEXT NOT NULL,
   tipo TEXT NOT NULL DEFAULT 'MASCOTA' CHECK (tipo IN ('MASCOTA','GRANJA','EXOTICO','SALVAJE')),
-  especie TEXT NOT NULL DEFAULT 'PERRO' CHECK (especie IN ('PERRO','GATO','PEZ','REPTIL','PAJARO','PEQUEÑOMAMIFERO','VACA','OVEJA','CERDO')),
+  especie TEXT NOT NULL DEFAULT 'PERRO' CHECK (especie IN ('PERRO','GATO','PEZ','REPTIL','PAJARO','PEQUEÑO MAMIFERO','VACA','OVEJA','CERDO')),
   tamaño NUMERIC(12,2)  NOT NULL DEFAULT 0.00,
   peso NUMERIC(12,2)  NOT NULL DEFAULT 0.00,
   estado TEXT NOT NULL DEFAULT 'ACTIVO' CHECK (estado IN ('ACTIVO','INACTIVO')),
@@ -33,8 +33,10 @@ CREATE TABLE IF NOT EXISTS Animales (
 DROP TABLE Dispositivos CASCADE;
 CREATE TABLE IF NOT EXISTS Dispositivos (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  alias TEXT NOT NULL DEFAULT 'Dispositivo1',
   tipo TEXT NOT NULL DEFAULT 'COLLAR' CHECK (tipo IN ('COLLAR','TERMOMETRO','ANILLO','BOTON','SENSOR','OTRO')),
   modelo TEXT NOT NULL DEFAULT '1.0',
+  Numero_Serie TEXT NOT NULL DEFAULT 'ESXXXXXXXXXX',
   estado TEXT NOT NULL DEFAULT 'ACTIVO' CHECK (estado IN ('ACTIVO','INACTIVO')),
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
@@ -69,6 +71,14 @@ CREATE TABLE IF NOT EXISTS ServicioContratado (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
+-- Usuarios Invitados
+CREATE TABLE IF NOT EXISTS UsuariosInvitados (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  Usuario_id UUID NOT NULL REFERENCES Usuarios(id) ON DELETE CASCADE,
+  Usuario_Invitado_id UUID NOT NULL REFERENCES Usuarios(id) ON DELETE CASCADE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
 -- Dueño de Animales
 CREATE TABLE IF NOT EXISTS DueñoAnimal (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -93,6 +103,14 @@ CREATE TABLE IF NOT EXISTS DatosIotDispositivo (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
+-- Dueño de Dispositivos
+CREATE TABLE IF NOT EXISTS DueñoDispositivo (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  Usuario_id UUID NOT NULL REFERENCES Usuarios(id) ON DELETE CASCADE,
+  Dispositivo_id UUID NOT NULL REFERENCES Dispositivos(id) ON DELETE CASCADE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
 -- Índices útiles
 CREATE INDEX IF NOT EXISTS idx_dueno_animal_usuario ON DueñoAnimal(Usuario_id, created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_dispositivo_animal_relacion ON DispositivoAnimal(Animal_id, Dispositivo_id);
@@ -101,4 +119,5 @@ CREATE INDEX IF NOT EXISTS idx_dispositivo_animal_relacion ON DispositivoAnimal(
 CREATE INDEX IF NOT EXISTS idx_animales_tipo ON Animales(tipo);
 CREATE INDEX IF NOT EXISTS idx_animales_especie ON Animales(especie);
 CREATE INDEX IF NOT EXISTS idx_animales_estado ON Animales(estado);
+CREATE INDEX IF NOT EXISTS idx_dueno_dispositivo_usuario ON DueñoDispositivo(Usuario_id);
 CREATE INDEX IF NOT EXISTS idx_animales_tipo_estado ON Animales(tipo, estado);

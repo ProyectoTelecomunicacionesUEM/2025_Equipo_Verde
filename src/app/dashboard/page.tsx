@@ -22,5 +22,23 @@ export default async function DashboardPage() {
     WHERE da.Usuario_id = $1
   `, [session.user.id]);
 
-  return <DashboardUI user={dbUser} animales={animales} />;
+  // Obtener usuarios invitados
+  const { rows: invitedUsers } = await pool.query(`
+    SELECT u.id, u.nombre, u.apellidos, u.email, u.estado
+    FROM Usuarios u
+    JOIN UsuariosInvitados ui ON u.id = ui.Usuario_Invitado_id
+    WHERE ui.Usuario_id = $1
+  `, [session.user.id]);
+
+  // Obtener dispositivos del usuario
+  const { rows: dispositivos } = await pool.query(`
+    SELECT d.*, da.Animal_id as animal_id, a.nombre as animal_nombre
+    FROM Dispositivos d
+    JOIN DueñoDispositivo dd ON d.id = dd.Dispositivo_id
+    LEFT JOIN DispositivoAnimal da ON d.id = da.Dispositivo_id
+    LEFT JOIN Animales a ON da.Animal_id = a.id
+    WHERE dd.Usuario_id = $1
+  `, [session.user.id]);
+
+  return <DashboardUI user={dbUser} animales={animales} invitedUsers={invitedUsers} dispositivos={dispositivos} />;
 }

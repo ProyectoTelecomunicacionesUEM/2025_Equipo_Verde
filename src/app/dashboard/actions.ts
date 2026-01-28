@@ -117,3 +117,136 @@ export async function deleteAnimal(userId: string, animalId: string) {
         return { success: false, error: "Error al eliminar el animal." };
     }
 }
+
+export async function inviteUser(currentUserId: string, emailToInvite: string) {
+    const session = await auth();
+    if (!session?.user || session.user.id !== currentUserId) {
+        return { success: false, error: "No autorizado." };
+    }
+
+    try {
+        // 1. Buscar al usuario por email
+        const userRes = await pool.query("SELECT id FROM Usuarios WHERE email = $1", [emailToInvite]);
+        if (userRes.rowCount === 0) {
+            return { success: false, error: "El usuario con ese email no existe." };
+        }
+        const invitedUserId = userRes.rows[0].id;
+
+        if (invitedUserId === currentUserId) {
+             return { success: false, error: "No puedes invitarte a ti mismo." };
+        }
+
+        // 2. Verificar si ya está invitado
+        const checkRes = await pool.query(
+            "SELECT 1 FROM UsuariosInvitados WHERE Usuario_id = $1 AND Usuario_Invitado_id = $2",
+            [currentUserId, invitedUserId]
+        );
+        if (checkRes.rowCount > 0) {
+            return { success: false, error: "Este usuario ya está invitado." };
+        }
+
+        // 3. Crear la invitación
+        await pool.query(
+            "INSERT INTO UsuariosInvitados (Usuario_id, Usuario_Invitado_id) VALUES ($1, $2)",
+            [currentUserId, invitedUserId]
+        );
+
+        return { success: true };
+    } catch (e: any) {
+        console.error("Error al invitar usuario:", e);
+        return { success: false, error: "Error al procesar la invitación." };
+    }
+}
+
+export async function removeInvitation(currentUserId: string, invitedUserId: string) {
+    const session = await auth();
+    if (!session?.user || session.user.id !== currentUserId) {
+        return { success: false, error: "No autorizado." };
+    }
+
+    try {
+        await pool.query(
+            "DELETE FROM UsuariosInvitados WHERE Usuario_id = $1 AND Usuario_Invitado_id = $2",
+            [currentUserId, invitedUserId]
+        );
+        return { success: true };
+    } catch (e: any) {
+        console.error("Error al eliminar invitación:", e);
+        return { success: false, error: "Error al eliminar la invitación." };
+    }
+}
+
+export async function addDevice(userId: string, alias: string, tipo: string, modelo: string, numeroSerie: string, estado: string, animalId: string) {
+    const session = await auth();
+
+    if (!session?.user || session.user.id !== userId) {
+        return { success: false, error: "No autorizado." };
+    }
+
+    try {
+        // 1. Insertar el dispositivo
+        const insertResult = await pool.query(
+            "INSERT INTO Dispositivos (alias, tipo, modelo, Numero_Serie, estado) VALUES ($1, $2, $3, $4, $5) RETURNING id",
+            [alias, tipo, modelo, numeroSerie, estado]
+        );
+        const dispositivoId = insertResult.rows[0].id;
+
+        // 2. Asociar al dueño
+        await pool.query(
+            "INSERT INTO DueñoDispositivo (Usuario_id, Dispositivo_id) VALUES ($1, $2)",
+            [userId, dispositivoId]
+        );
+
+        // 3. Asociar al animal si se seleccionó uno
+        if (animalId) {
+            await pool.query(
+                "INSERT INTO DispositivoAnimal (Animal_id, Dispositivo_id) VALUES ($1, $2)",
+                [animalId, dispositivoId]
+            );
+        }
+
+        return { success: true };
+    } catch (e: any) {
+        console.error("Error al añadir dispositivo:", e);
+        return { success: false, error: "Error al guardar el dispositivo." };
+    }
+}
+
+export async function updateDevice(userId: string, deviceId: string, alias: string, tipo: string, modelo: string, numeroSerie: string, estado: string, animalId: string) {
+    const session = await auth();
+
+    if (!session?.user || session.user.id !== userId) {
+        return { success: false, error: "No autorizado." };
+    }
+
+    try {
+        await pool.query(
+            "UPDATE Dispositivos SET alias = $1, tipo = $2, modelo = $3, Numero_Serie = $4, estado = $5 WHERE id = $6",
+            [alias, tipo, modelo, numeroSerie, estado, deviceId]
+        );
+
+        // Actualizar relación con animal (borrar anterior y crear nueva si aplica)
+        await pool.query("DELETE FROM DispositivoAnimal WHERE Dispositivo_id = $1", [deviceId]);
+        if (animalId) {
+            await pool.query(
+                "INSERT INTO DispositivoAnimal (Animal_id, Dispositivo_id) VALUES ($1, $2)",
+                [animalId, deviceId]
+            );
+        }
+
+        return { success: true };
+    } catch (e: any) {
+        console.error("Error al actualizar dispositivo:", e);
+        return { success: false, error: "Error al actualizar el dispositivo." };
+    }
+}
+
+export async function deleteDevice(userId: string, deviceId: string) {
+    const session = await auth();
+    if (!session?.user || session.user.id !== userId) return { success: false, error: "No autorizado." };
+
+    try {
+        await pool.query("DELETE FROM Dispositivos WHERE id = $1", [deviceId]);
+        return { success: true };
+    } catch (e: any) { return { success: false, error: "Error al eliminar dispositivo." }; }
+}
