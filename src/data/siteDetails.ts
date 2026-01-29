@@ -1,9 +1,9 @@
 export const siteDetails = {
-    siteName: 'Finwise',
+    siteName: 'MyPetPlan',
     siteUrl: 'https://finwise-omega.vercel.app/',
     metadata: {
-        title: 'Finwise - Next.js and Tailwind CSS Landing Page Template',
-        description: 'Finwise empowers businesses with cutting-edge technology solutions to drive success and efficiency.',
+        title: 'MyPetPlan',
+        description: 'Gestiona la salud y el bienestar de tus mascotas de forma inteligente.',
     },
     language: 'en-us',
     locale: 'en-US',

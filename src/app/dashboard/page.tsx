@@ -1,35 +1,44 @@
 import { auth } from "@/auth";
-import Link from "next/link";
+import { redirect } from "next/navigation";
+import { pool } from "@/lib/db";
+import DashboardUI from "./DashboardUI";
 
 export default async function DashboardPage() {
   const session = await auth();
 
   if (!session?.user) {
-    return (
-      <main className="max-w-xl mx-auto p-6 mt-24">
-        <h1 className="text-2xl font-semibold">Necesitas iniciar sesión</h1>
-        <p className="mt-2">
-          <Link href="/login" className="underline">
-            Ir a Login
-          </Link>
-        </p>
-      </main>
-    );
+    redirect("/login");
   }
 
-  return (
-    <main className="max-w-3xl mx-auto p-6 mt-24">
-      <h1 className="text-3xl font-semibold">
-        Hola, {session.user.name || session.user.email}
-      </h1>
-      <p className="text-sm text-gray-600 mt-1">Tu panel privado</p>
-      <div className="mt-6 rounded-lg border p-4 bg-white/70">
-        <p className="text-gray-700">
-          Aquí puedes conectar tus datos bancarios, revisar tus transacciones y automatizar tus
-          finanzas. Integra tu backend con las rutas de ejemplo <code>/api/me</code> y{" "}
-          <code>/api/transactions</code>.
-        </p>
-      </div>
-    </main>
-  );
+  // Obtener datos frescos del usuario desde la base de datos
+  const { rows: userRows } = await pool.query("SELECT * FROM Usuarios WHERE id = $1", [session.user.id]);
+  const dbUser = userRows[0] || session.user;
+
+  // Obtener animales del usuario
+  const { rows: animales } = await pool.query(`
+    SELECT a.* 
+    FROM Animales a
+    JOIN DueñoAnimal da ON a.id = da.Animal_id
+    WHERE da.Usuario_id = $1
+  `, [session.user.id]);
+
+  // Obtener usuarios invitados
+  const { rows: invitedUsers } = await pool.query(`
+    SELECT u.id, u.nombre, u.apellidos, u.email, u.estado
+    FROM Usuarios u
+    JOIN UsuariosInvitados ui ON u.id = ui.Usuario_Invitado_id
+    WHERE ui.Usuario_id = $1
+  `, [session.user.id]);
+
+  // Obtener dispositivos del usuario
+  const { rows: dispositivos } = await pool.query(`
+    SELECT d.*, da.Animal_id as animal_id, a.nombre as animal_nombre
+    FROM Dispositivos d
+    JOIN DueñoDispositivo dd ON d.id = dd.Dispositivo_id
+    LEFT JOIN DispositivoAnimal da ON d.id = da.Dispositivo_id
+    LEFT JOIN Animales a ON da.Animal_id = a.id
+    WHERE dd.Usuario_id = $1
+  `, [session.user.id]);
+
+  return <DashboardUI user={dbUser} animales={animales} invitedUsers={invitedUsers} dispositivos={dispositivos} />;
 }
