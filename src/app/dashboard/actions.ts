@@ -86,7 +86,7 @@ export async function updateAnimal(userId: string, animalId: string, nombre: str
     try {
         // Verificar que el animal pertenece al usuario
         const checkOwner = await pool.query("SELECT 1 FROM DueñoAnimal WHERE Usuario_id = $1 AND Animal_id = $2", [userId, animalId]);
-        if (checkOwner.rowCount === 0) {
+        if ((checkOwner.rowCount ?? 0) === 0) {
             return { success: false, error: "No se encontró el animal o no tienes permiso." };
         }
 
@@ -129,7 +129,7 @@ export async function inviteUser(currentUserId: string, emailToInvite: string) {
     try {
         // 1. Buscar al usuario por email
         const userRes = await pool.query("SELECT id FROM Usuarios WHERE email = $1", [emailToInvite]);
-        if (userRes.rowCount === 0) {
+        if ((userRes.rowCount ?? 0) === 0) {
             return { success: false, error: "El usuario con ese email no existe." };
         }
         const invitedUserId = userRes.rows[0].id;
@@ -143,7 +143,7 @@ export async function inviteUser(currentUserId: string, emailToInvite: string) {
             "SELECT 1 FROM UsuariosInvitados WHERE Usuario_id = $1 AND Usuario_Invitado_id = $2",
             [currentUserId, invitedUserId]
         );
-        if (checkRes.rowCount > 0) {
+        if ((checkRes.rowCount ?? 0) > 0) {
             return { success: false, error: "Este usuario ya está invitado." };
         }
 
