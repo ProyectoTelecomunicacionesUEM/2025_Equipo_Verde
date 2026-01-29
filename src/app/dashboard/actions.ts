@@ -18,8 +18,8 @@ export async function deleteUserAccount(userId: string) {
         );
 
         return { success: true };
-    } catch (e: any) {
-        console.error("Error al dar de baja al usuario:", e);
+    } catch (error: unknown) {
+        console.error("Error al dar de baja al usuario:", error);
         return { success: false, error: "Ocurrió un error al intentar eliminar la cuenta." };
     }
 }
@@ -37,11 +37,13 @@ export async function updateUserProfile(userId: string, nombre: string, apellido
             [nombre, apellidos, email, metodoPago, userId]
         );
         return { success: true };
-    } catch (e: any) {
+    } catch (error: unknown) {
+        const e = error as { code?: string };
         if (e.code === '23505') {
             return { success: false, error: "El email ya está registrado por otro usuario." };
         }
         console.error("Error al actualizar perfil:", e);
+        console.error("Error al actualizar perfil:", error);
         return { success: false, error: "Error al actualizar el perfil." };
     }
 }
@@ -68,8 +70,8 @@ export async function addAnimal(userId: string, nombre: string, tipo: string, es
         );
 
         return { success: true };
-    } catch (e: any) {
-        console.error("Error al añadir animal:", e);
+    } catch (error: unknown) {
+        console.error("Error al añadir animal:", error);
         return { success: false, error: "Error al guardar el animal." };
     }
 }
@@ -94,8 +96,8 @@ export async function updateAnimal(userId: string, animalId: string, nombre: str
         );
 
         return { success: true };
-    } catch (e: any) {
-        console.error("Error al actualizar animal:", e);
+    } catch (error: unknown) {
+        console.error("Error al actualizar animal:", error);
         return { success: false, error: "Error al actualizar el animal." };
     }
 }
@@ -112,8 +114,8 @@ export async function deleteAnimal(userId: string, animalId: string) {
         // se encargará de borrar también la relación en DueñoAnimal.
         await pool.query("DELETE FROM Animales WHERE id = $1", [animalId]);
         return { success: true };
-    } catch (e: any) {
-        console.error("Error al eliminar animal:", e);
+    } catch (error: unknown) {
+        console.error("Error al eliminar animal:", error);
         return { success: false, error: "Error al eliminar el animal." };
     }
 }
@@ -152,8 +154,8 @@ export async function inviteUser(currentUserId: string, emailToInvite: string) {
         );
 
         return { success: true };
-    } catch (e: any) {
-        console.error("Error al invitar usuario:", e);
+    } catch (error: unknown) {
+        console.error("Error al invitar usuario:", error);
         return { success: false, error: "Error al procesar la invitación." };
     }
 }
@@ -170,8 +172,8 @@ export async function removeInvitation(currentUserId: string, invitedUserId: str
             [currentUserId, invitedUserId]
         );
         return { success: true };
-    } catch (e: any) {
-        console.error("Error al eliminar invitación:", e);
+    } catch (error: unknown) {
+        console.error("Error al eliminar invitación:", error);
         return { success: false, error: "Error al eliminar la invitación." };
     }
 }
@@ -206,8 +208,8 @@ export async function addDevice(userId: string, alias: string, tipo: string, mod
         }
 
         return { success: true };
-    } catch (e: any) {
-        console.error("Error al añadir dispositivo:", e);
+    } catch (error: unknown) {
+        console.error("Error al añadir dispositivo:", error);
         return { success: false, error: "Error al guardar el dispositivo." };
     }
 }
@@ -235,8 +237,8 @@ export async function updateDevice(userId: string, deviceId: string, alias: stri
         }
 
         return { success: true };
-    } catch (e: any) {
-        console.error("Error al actualizar dispositivo:", e);
+    } catch (error: unknown) {
+        console.error("Error al actualizar dispositivo:", error);
         return { success: false, error: "Error al actualizar el dispositivo." };
     }
 }
@@ -248,5 +250,8 @@ export async function deleteDevice(userId: string, deviceId: string) {
     try {
         await pool.query("DELETE FROM Dispositivos WHERE id = $1", [deviceId]);
         return { success: true };
-    } catch (e: any) { return { success: false, error: "Error al eliminar dispositivo." }; }
+    } catch (error: unknown) {
+        console.error("Error al eliminar dispositivo:", error);
+        return { success: false, error: "Error al eliminar dispositivo." };
+    }
 }

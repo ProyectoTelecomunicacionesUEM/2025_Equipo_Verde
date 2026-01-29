@@ -26,9 +26,10 @@ export async function registerUser(
         );
 
         return { success: true };
-    } catch (e: any) {
+    } catch (e: unknown) {
+        const error = e as { code?: string };
         // Manejo de error si el email ya existe (código 23505 en PostgreSQL)
-        if (e.code === '23505') {
+        if (error.code === '23505') {
             return { success: false, error: "Este email ya está registrado." };
         }
         console.error("Error en registro:", e);

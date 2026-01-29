@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { signIn, getCsrfToken } from "next-auth/react";
 import { registerUser } from "./actions";

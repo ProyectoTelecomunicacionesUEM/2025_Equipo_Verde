@@ -7,7 +7,46 @@ import { GiTigerHead, GiSnake } from "react-icons/gi";
 import { signOut } from "next-auth/react";
 import { deleteUserAccount, updateUserProfile, addAnimal, updateAnimal, deleteAnimal, inviteUser, removeInvitation, addDevice, updateDevice, deleteDevice } from "./actions";
 
-export default function DashboardUI({ user, animales, invitedUsers = [], dispositivos = [] }: { user: any, animales: any[], invitedUsers?: any[], dispositivos?: any[] }) {
+interface User {
+  id: string;
+  nombre: string;
+  apellidos: string;
+  email: string;
+  metodo_pago: string;
+  rol: string;
+  estado: string;
+}
+
+interface Animal {
+  id: string;
+  nombre: string;
+  tipo: string;
+  especie: string;
+  tamaño: string;
+  peso: string;
+  estado: string;
+}
+
+interface Device {
+  id: string;
+  alias: string;
+  tipo: string;
+  modelo: string;
+  numero_serie: string;
+  estado: string;
+  animal_id?: string;
+  animal_nombre?: string;
+}
+
+interface InvitedUser {
+  id: string;
+  nombre: string;
+  apellidos: string;
+  email: string;
+  estado: string;
+}
+
+export default function DashboardUI({ user, animales, invitedUsers = [], dispositivos = [] }: { user: User, animales: Animal[], invitedUsers?: InvitedUser[], dispositivos?: Device[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [activeSection, setActiveSection] = useState(searchParams.get("section") || "resumen");
@@ -180,7 +219,7 @@ export default function DashboardUI({ user, animales, invitedUsers = [], disposi
     }
   }
 
-  function startEditing(animal: any) {
+  function startEditing(animal: Animal) {
     setNewAnimal({
         nombre: animal.nombre,
         tipo: animal.tipo,
@@ -305,7 +344,7 @@ export default function DashboardUI({ user, animales, invitedUsers = [], disposi
     }
   }
 
-  function startEditingDevice(device: any) {
+  function startEditingDevice(device: Device) {
     setNewDevice({
         alias: device.alias,
         tipo: device.tipo,
