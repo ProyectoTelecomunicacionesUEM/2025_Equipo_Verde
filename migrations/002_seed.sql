@@ -217,3 +217,4 @@ ON CONFLICT (tipo) DO UPDATE
 SET tipo = EXCLUDED.tipo,
     descripcion = EXCLUDED.descripcion,
     precio = EXCLUDED.precio;
+    
