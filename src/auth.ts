@@ -18,17 +18,31 @@ const handler = NextAuth({
         if (typeof email !== "string" || typeof password !== "string") return null;
 
         const { rows } = await pool.query(
-          "SELECT id, email, password_hash, name FROM users WHERE email=$1 LIMIT 1",
+          "SELECT * FROM Usuarios WHERE email=$1 LIMIT 1",
           [email]
         );
         const user = rows[0];
         if (!user) return null;
         const ok = await compare(password, user.password_hash);
         if (!ok) return null;
-        return { id: user.id, email: user.email, name: user.name ?? null };
+        return { id: user.id, email: user.email, nombre: user.nombre ?? null };
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id as string;
+      }
+      return session;
+    },
+  },
   session: { strategy: "jwt" },
   secret: process.env.AUTH_SECRET,
 });

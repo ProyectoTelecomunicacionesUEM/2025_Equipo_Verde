@@ -2,7 +2,7 @@
 
 ## 1. Preparar el proyecto
 1. `git clone <repo>` y entra en la carpeta.
-2. Instala dependencias: `npm install`.
+2. Instala dependencias: `npm install`. 
 3. Ten a mano Node 18+, una cuenta en Vercel y cuenta de Neon (está asociado a Vercel).
 
 ## 2. Configurar Vercel y Neon

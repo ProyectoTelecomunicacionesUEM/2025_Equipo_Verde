@@ -1,10 +1,11 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import React, { useState } from 'react';
 import { Transition } from '@headlessui/react';
-import { HiOutlineXMark, HiBars3 } from 'react-icons/hi2';
-import { FaFingerprint } from 'react-icons/fa';
+import { HiOutlineXMark, HiBars3, HiUser } from 'react-icons/hi2';
 
 import Container from './Container';
 import { siteDetails } from '@/data/siteDetails';
@@ -12,6 +13,8 @@ import { menuItems } from '@/data/menuItems';
 
 const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const pathname = usePathname();
+    const isLoginDisabled = pathname === '/welcome' || pathname?.startsWith('/dashboard');
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -23,10 +26,13 @@ const Header: React.FC = () => {
                 <nav className="shadow-md md:shadow-none bg-white md:bg-transparent mx-auto flex justify-between items-center py-2 px-5 md:py-10">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
-                        <FaFingerprint className="text-foreground min-w-fit w-7 h-7" />
-                        <span className="manrope text-xl font-semibold text-foreground cursor-pointer">
-                            {siteDetails.siteName}
-                        </span>
+                        <Image
+                            src="/images/MyPetPlanLogo.png"
+                            alt={siteDetails.siteName}
+                            width={180}
+                            height={60}
+                            className="cursor-pointer"
+                        />
                     </Link>
 
                     {/* Desktop Menu */}
@@ -41,14 +47,10 @@ const Header: React.FC = () => {
                         <li>
                             <Link
                                 href="/login"
-                                className="text-foreground border border-foreground rounded-full px-6 py-2 hover:bg-foreground hover:text-white transition-colors"
+                                className={`text-black bg-primary hover:bg-primary-accent px-8 py-3 rounded-full transition-colors flex items-center gap-2 ${isLoginDisabled ? 'opacity-50 pointer-events-none' : ''}`}
                             >
-                                Login
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="#cta" className="text-black bg-primary hover:bg-primary-accent px-8 py-3 rounded-full transition-colors">
-                                Download
+                                <HiUser className="w-5 h-5" />
+                                {isLoginDisabled ? 'Logueado' : 'Login'}
                             </Link>
                         </li>
                     </ul>
@@ -95,15 +97,11 @@ const Header: React.FC = () => {
                         <li>
                             <Link
                                 href="/login"
-                                className="text-foreground border border-foreground rounded-full px-5 py-2 block w-fit"
+                                className={`text-black bg-primary hover:bg-primary-accent px-5 py-2 rounded-full w-fit flex items-center gap-2 ${isLoginDisabled ? 'opacity-50 pointer-events-none' : ''}`}
                                 onClick={toggleMenu}
                             >
-                                Login
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="#cta" className="text-black bg-primary hover:bg-primary-accent px-5 py-2 rounded-full block w-fit" onClick={toggleMenu}>
-                                Get Started
+                                <HiUser className="w-5 h-5" />
+                                {isLoginDisabled ? 'Logueado' : 'Login'}
                             </Link>
                         </li>
                     </ul>
