@@ -29,3 +29,191 @@ SET password_hash = EXCLUDED.password_hash,
     estado = EXCLUDED.estado;
 
 -- Opcional: categorías demo para el usuario demo (reemplaza USER_ID en tiempo de seed si quieres)
+
+-- RELLENO BASE DE DATOS DE SERVICIOS
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'SEGUIMIENTO CARDIACO Y RESPIRATORIO',
+  'Seguimiento de los cambios respiratorios y cardiacos del animal',
+  '5.50'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
+
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'ALERTA LADRIDO',
+  'Monitorización y alerta de ladridos excesivos',
+  '3.00'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
+
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'NIVEL ACTIVIDAD',
+  'Medición del nivel de actividad física diaria',
+  '4.00'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
+
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'MEDICIONES ACTIVIDAD Y SUEÑO',
+  'Análisis de patrones de actividad y calidad del sueño',
+  '4.50'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
+
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'LOCALIZACION Y ALERTA ANTIFUGA',
+  'Rastreo GPS y alertas si el animal sale de zona segura',
+  '6.00'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
+
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'CLIMATIZACION',
+  'Control y monitoreo de la temperatura ambiental',
+  '5.00'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
+
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'IDENTIFICACION RFID',
+  'Identificación electrónica mediante tecnología RFID',
+  '2.50'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
+
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'LOCALIZACION GPS',
+  'Ubicación en tiempo real mediante GPS',
+  '5.50'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
+
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'CONTROL TEMPERATURA',
+  'Medición constante de la temperatura corporal o ambiental',
+  '3.50'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
+
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'CONTROL CALIDAD AGUA',
+  'Análisis de parámetros de calidad del agua',
+  '7.00'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
+
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'PATRONES RUMIA',
+  'Monitorización de los ciclos de rumia en ganado',
+  '6.50'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
+
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'INGESTA ALIMENTOS',
+  'Control de la cantidad y frecuencia de alimentación',
+  '4.50'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
+
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'ALERTA MASTITIS BOVINA',
+  'Detección temprana de signos de mastitis',
+  '8.00'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
+
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'ALERTA PARTO',
+  'Monitorización y aviso ante inicio de parto',
+  '9.00'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
+
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'ESPECIALIZADO',
+  'Servicios personalizados según necesidades específicas',
+  '10.00'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
+
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'TODOS',
+  'Paquete completo con todos los servicios disponibles',
+  '25.00'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
+
+INSERT INTO Servicios (tipo, descripcion, precio)
+VALUES (
+  'OTRO',
+  'Otros servicios no categorizados',
+  '5.00'
+)
+ON CONFLICT (tipo) DO UPDATE
+SET tipo = EXCLUDED.tipo,
+    descripcion = EXCLUDED.descripcion,
+    precio = EXCLUDED.precio;
