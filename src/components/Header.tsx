@@ -9,7 +9,6 @@ import { HiOutlineXMark, HiBars3, HiUser } from 'react-icons/hi2';
 
 import Container from './Container';
 import { siteDetails } from '@/data/siteDetails';
-import { menuItems } from '@/data/menuItems';
 
 const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -37,13 +36,21 @@ const Header: React.FC = () => {
 
                     {/* Desktop Menu */}
                     <ul className="hidden md:flex space-x-6 items-center">
-                        {menuItems.map(item => (
-                            <li key={item.text}>
-                                <Link href={item.url} className="text-foreground hover:text-foreground-accent transition-colors">
-                                    {item.text}
-                                </Link>
-                            </li>
-                        ))}
+                        <li>
+                            <Link href="/" className="text-foreground hover:text-foreground-accent transition-colors">Inicio</Link>
+                        </li>
+                        <li>
+                            <Link href="/mascotas" className="text-foreground hover:text-foreground-accent transition-colors">Mascotas</Link>
+                        </li>
+                        <li>
+                            <Link href="/granjas" className="text-foreground hover:text-foreground-accent transition-colors">Granjas</Link>
+                        </li>
+                        <li>
+                            <Link href="/exoticos" className="text-foreground hover:text-foreground-accent transition-colors">Exóticos</Link>
+                        </li>
+                        <li>
+                            <Link href="/salvajes" className="text-foreground hover:text-foreground-accent transition-colors">Salvajes</Link>
+                        </li>
                         <li>
                             <Link
                                 href="/login"
@@ -87,13 +94,21 @@ const Header: React.FC = () => {
             >
                 <div id="mobile-menu" className="md:hidden bg-white shadow-lg">
                     <ul className="flex flex-col space-y-4 pt-1 pb-6 px-6">
-                        {menuItems.map(item => (
-                            <li key={item.text}>
-                                <Link href={item.url} className="text-foreground hover:text-primary block" onClick={toggleMenu}>
-                                    {item.text}
-                                </Link>
-                            </li>
-                        ))}
+                        <li>
+                            <Link href="/" className="text-foreground hover:text-primary block" onClick={toggleMenu}>Inicio</Link>
+                        </li>
+                        <li>
+                            <Link href="/mascotas" className="text-foreground hover:text-primary block" onClick={toggleMenu}>Mascotas</Link>
+                        </li>
+                        <li>
+                            <Link href="/granjas" className="text-foreground hover:text-primary block" onClick={toggleMenu}>Granjas</Link>
+                        </li>
+                        <li>
+                            <Link href="/exoticos" className="text-foreground hover:text-primary block" onClick={toggleMenu}>Exóticos</Link>
+                        </li>
+                        <li>
+                            <Link href="/salvajes" className="text-foreground hover:text-primary block" onClick={toggleMenu}>Salvajes</Link>
+                        </li>
                         <li>
                             <Link
                                 href="/login"

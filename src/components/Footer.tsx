@@ -30,11 +30,18 @@ const Footer: React.FC = () => {
                 <div className="flex flex-col items-center">
                     <h4 className="text-lg font-semibold mb-4 mt-2 md:mt-4">Accesos Rápidos</h4>
                     <ul className="text-foreground-accent text-center">
-                        {footerDetails.quickLinks.map(link => (
-                            <li key={link.text} className="mb-2">
-                                <Link href={link.url} className="hover:text-foreground">{link.text}</Link>
-                            </li>
-                        ))}
+                        <li className="mb-2">
+                            <Link href="/mascotas" className="hover:text-foreground">Mascotas</Link>
+                        </li>
+                        <li className="mb-2">
+                            <Link href="/granjas" className="hover:text-foreground">Granjas</Link>
+                        </li>
+                        <li className="mb-2">
+                            <Link href="/exoticos" className="hover:text-foreground">Exóticos</Link>
+                        </li>
+                        <li className="mb-2">
+                            <Link href="/salvajes" className="hover:text-foreground">Salvajes</Link>
+                        </li>
                     </ul>
                 </div>
                 <div className="flex flex-col items-center">
