@@ -80,6 +80,7 @@ export default async function WelcomePage() {
             <li>Selecciona los servicios según necesidades.</li>
             <li>Activa tu dispositivo.</li>
             <li>Consulta el dashboard para ver tus métricas clave.</li>
+            <li>Exporta los datos si necesitas compartirlos.</li>
           </ul>
         </article>
       </section>
