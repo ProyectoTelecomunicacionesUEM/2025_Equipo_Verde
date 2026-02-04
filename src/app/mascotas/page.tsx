@@ -41,7 +41,7 @@ export default async function MascotasPage() {
 
               {/* Lista de características */}
               <ul className="space-y-3">
-                {["Historial médico digital", "Recordatorios de vacunación", "Seguimiento de actividad", "Gestión de múltiples mascotas"].map((item, index) => (
+                {["Seguimiento cardíaco y respiratorio", "Seguimiento de ladridos", "Mediciones de actividad y sueño", "Localización y alertas anti-fuga"].map((item, index) => (
                   <li key={index} className="flex items-center gap-3 text-gray-700">
                     <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600">
                       <FaCheck size={12} />
@@ -89,7 +89,7 @@ export default async function MascotasPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Localización GPS Precisa</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Rastreo en tiempo real con cobertura ilimitada. Define "Zonas Seguras" y recibe alertas instantáneas si tu mascota se aleja demasiado.
+                Rastreo en tiempo real con cobertura ilimitada. Define Zonas Seguras y recibe alertas instantáneas si tu mascota se aleja demasiado.
               </p>
             </div>
 

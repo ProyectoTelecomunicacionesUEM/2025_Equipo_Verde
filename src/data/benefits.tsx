@@ -4,67 +4,67 @@ import { IBenefit } from "@/types"
 
 export const benefits: IBenefit[] = [
     {
-        title: "Smart Budgeting",
-        description: "Take the guesswork out of managing your money. Our AI-powered budgeting tool adapts to your lifestyle and helps you stay on track.",
+        title: "Quienes somos",
+        description: "Este proyecto nace con la intención de fomentar el uso de los dispositivos inteligentes para el control y cuidado de animales, ofreciendo tecnología Wearable de forma personalizada y asequible.",
         bullets: [
             {
-                title: "Intelligent Categorization",
-                description: "Automatically sorts your transactions for crystal-clear insights.",
+                title: "Objetivo Comercial",
+                description: "Facilitar la toma de decisiones para el cuidado animal.",
                 icon: <FiBarChart2 size={26} />
             },
             {
-                title: "Customizable Goals",
-                description: "Set and track financial objectives that matter to you.",
-                icon: <FiTarget size={26} />
+                title: "Diseño",
+                description: "Una plataforma cómoda y fácil de usar para todos.",
+                icon: <FiUser size={26} />
             },
             {
-                title: "Predictive Analysis",
-                description: "Get ahead of your finances with spending forecasts and alerts.",
+                title: "Funcionalidad",
+                description: "Herramienta integral de gestión de datos y alertas.",
                 icon: <FiTrendingUp size={26} />
             }
         ],
         imageSrc: "/images/mockup-1.webp"
     },
     {
-        title: "Seamless Investing",
-        description: "Start building wealth today, no financial degree required. Finwise makes investing accessible and straightforward.",
+        title: "Nuestros servicios",
+        description: "Cubrimos Mascotas, Animales de Granja, Exóticos y Salvajes. Configura los servicios que necesitas y paga solo por lo que usas.",
         bullets: [
             {
-                title: "Micro-Investing",
-                description: "Begin with as little as $1 and watch your money grow.",
-                icon: <FiDollarSign size={26} />
+                title: "Mascotas y Exóticos",
+                description: "Collares y sensores para perros, gatos, aves y reptiles.",
+                icon: <FiTarget size={26} />
             },
             {
-                title: "Expert Portfolios",
-                description: "Choose from investment strategies tailored to your risk tolerance.",
+                title: "Animales de Granja",
+                description: "GPS y monitorización de salud para ganado.",
                 icon: <FiBriefcase size={26} />
             },
             {
-                title: "Real-Time Performance",
-                description: "Track your investments with easy-to-understand metrics and visuals.",
+                title: "Planes Flexibles",
+                description: "¡Tú eliges los servicios, tú controlas el coste!",
                 icon: <FiPieChart size={26} />
             }
         ],
         imageSrc: "/images/mockup-2.webp"
     },
     {
-        title: "Bank-Grade Security",
-        description: "Your financial data deserves the best protection. Rest easy knowing Finwise employs cutting-edge security measures.",
+        title: "Equipo de desarrollo",
+        description: "Un equipo multidisciplinar de ingeniería comprometido con el bienestar animal y la innovación tecnológica.",
         bullets: [
             {
-                title: "Military-Grade Encryption",
-                description: "Your information is safeguarded with the highest level of encryption.",
-                icon: <FiLock size={26} />
+                title: "Gestión y Calidad",
+                description: "Jessica Baidez (PO) y Claudia (Scrum Master).",
+                icon: <FiShield size={26} />
             },
             {
-                title: "Biometric Authentication",
-                description: "Access your account securely with fingerprint or facial recognition.",
+                title: "Desarrollo e Investigación",
+                description: "Sebastián Bernal, Guillermo Cristobal y Jorge García.",
                 icon: <FiUser size={26} />
             },
             {
-                title: "Real-Time Fraud Detection",
-                description: "Our system constantly monitors for suspicious activity to keep your money safe.",
-                icon: <FiShield size={26} />
+                title: "Stakeholders",
+                description: "Flavio Grillo (Docente).",
+                icon: <FiLock size={26} />
             }
         ],
         imageSrc: "/images/mockup-1.webp"
