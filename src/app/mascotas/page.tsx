@@ -52,18 +52,18 @@ export default async function MascotasPage() {
               </ul>
 
               <div className="pt-4">
-              {!session?.user ? (
-                <Link
-                  href="/mascotasservicios"
-                  className="inline-flex justify-center items-center w-full sm:w-auto px-8 py-4 bg-blue-600 text-white text-lg font-bold rounded-full hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg"
-                >
-                  Empezar Ahora
-                </Link>
-              ) : (
-                <Link href="/mascotasservicios" className="inline-flex justify-center items-center w-full sm:w-auto px-8 py-4 bg-blue-600 text-white text-lg font-bold rounded-full hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg">
-                  Añadir Mascota
-                </Link>
-              )}
+                {!session?.user ? (
+                  <Link
+                    href="/mascotasservicios"
+                    className="inline-flex justify-center items-center w-full sm:w-auto px-8 py-4 bg-blue-600 text-white text-lg font-bold rounded-full hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg"
+                  >
+                    Empezar Ahora
+                  </Link>
+                ) : (
+                  <Link href="/mascotasservicios" className="inline-flex justify-center items-center w-full sm:w-auto px-8 py-4 bg-blue-600 text-white text-lg font-bold rounded-full hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg">
+                    Añadir Mascota
+                  </Link>
+                )}
                 <p className="text-xs text-gray-500 mt-3 text-center sm:text-left">
                   * Únete a miles de dueños responsables hoy mismo.
                 </p>
