@@ -1,4 +1,3 @@
-import { auth } from "@/auth";
 import Link from "next/link";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
@@ -10,8 +9,6 @@ import Stats from "@/components/Stats";
 import CTA from "@/components/CTA";
 
 export default async function HomePage() {
-  const session = await auth();
-
   return (
     <>
       <div className="mt-32">
