@@ -3,23 +3,47 @@ import { siteDetails } from "./siteDetails";
 
 export const faqs: IFAQ[] = [
     {
-        question: `Is ${siteDetails.siteName} secure?`,
-        answer: 'Absolutely. We use bank-level encryption to protect your data and never store your login information. Plus, our biometric authentication adds an extra layer of security.',
+        question: '¿Es seguro MyPetPlan?',
+        answer: `Sí. MyPetPlan utiliza sistemas de acceso seguro y conexiones protegidas para garantizar que los datos de los animales y de los usuarios estén siempre protegidos.
+
+Solo las personas autorizadas pueden acceder a la información, y el propietario del dispositivo puede conceder o retirar permisos en cualquier momento. Así, el control de los datos está siempre en manos del usuario.`,
     },
     {
-        question: `Can I use ${siteDetails.siteName} on multiple devices?`,
-        answer: 'Absolutely! Your Finwise account syncs seamlessly across all your devices - smartphone, tablet, and computer.',
+        question: '¿Puedo usar MyPetPlan en varios dispositivos?',
+        answer: `Sí. Puedes acceder a tu cuenta de MyPetPlan desde ordenador, tablet o móvil sin ningún problema.
+
+Toda la información de tus animales y dispositivos se sincroniza en tiempo real, lo que te permite consultar los datos estés donde estés.`,
     },
     {
-        question: 'Can I connect all my bank accounts?',
-        answer: `Yes! ${siteDetails.siteName} supports connections with over 10,000 financial institutions worldwide. Simply log in through our secure portal to link your accounts.`
+        question: '¿Puedo gestionar varios animales o dispositivos a la vez?',
+        answer: `Por supuesto. MyPetPlan está diseñado para gestionar múltiples animales y dispositivos desde una sola cuenta.
+
+Cada dispositivo se asocia a un animal concreto, y desde el panel de gestión puedes cambiar fácilmente entre ellos, tanto si tienes una sola mascota como si gestionas una granja completa.`
     },
     {
-        question: 'Do I need any financial expertise to use the investing features?',
-        answer: 'Not at all! Our expert-curated portfolios and educational resources make investing accessible to everyone, regardless of experience level.',
+        question: '¿Necesito conocimientos técnicos para usar MyPetPlan?',
+        answer: `No. MyPetPlan ha sido diseñado para ser una plataforma sencilla, clara e intuitiva.
+
+No necesitas conocimientos técnicos ni veterinarios para entender la información. Los datos se muestran de forma visual, con alertas e informes que facilitan la comprensión y la toma de decisiones.`,
     },
     {
-        question: 'What if I need help using the app?',
-        answer: 'Our dedicated support team is available 24/7 via chat or email. Plus, we offer extensive in-app tutorials and a comprehensive knowledge base to help you make the most of Finwise.'
+        question: '¿Qué animales y dispositivos son compatibles con MyPetPlan?',
+        answer: `MyPetPlan es compatible con una amplia variedad de animales y dispositivos:
+
+Mascotas como perros y gatos
+
+Animales de granja (vacas, ovejas, cerdos)
+
+Animales exóticos como aves, reptiles o peces
+
+Dispositivos específicos para investigación y conservación
+
+Los servicios disponibles dependen del tipo de animal y del dispositivo utilizado.`
+    },
+    {
+        question: '¿Qué pasa si necesito ayuda usando la plataforma?',
+        answer: `Nuestro equipo de soporte está disponible para ayudarte en todo momento.
+
+Además, la plataforma incluye guías y explicaciones para facilitar la activación de dispositivos, la gestión de servicios y la interpretación de los datos.`
     }
 ];

@@ -16,14 +16,14 @@ const Testimonials: React.FC = () => {
                             alt={`${testimonial.name} avatar`}
                             width={50}
                             height={50}
-                            className="rounded-full shadow-md"
+                            className="rounded-full shadow-md object-cover"
                         />
                         <div className="ml-4">
                             <h3 className="text-lg font-semibold text-secondary">{testimonial.name}</h3>
                             <p className="text-sm text-foreground-accent">{testimonial.role}</p>
                         </div>
                     </div>
-                    <p className="text-foreground-accent text-center lg:text-left">&quot;{testimonial.message}&quot;</p>
+                    <p className="text-foreground-accent text-center lg:text-left whitespace-pre-line">&quot;{testimonial.message}&quot;</p>
                 </div>
             ))}
         </div>

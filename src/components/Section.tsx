@@ -3,7 +3,7 @@ import SectionTitle from "./SectionTitle";
 interface Props {
     id: string;
     title: string;
-    description: string;
+    description: string | React.ReactNode;
 }
 
 const Section: React.FC<React.PropsWithChildren<Props>> = ({ id, title, description, children }: React.PropsWithChildren<Props>) => {
@@ -12,7 +12,7 @@ const Section: React.FC<React.PropsWithChildren<Props>> = ({ id, title, descript
             <SectionTitle>
                 <h2 className="text-center mb-4">{title}</h2>
             </SectionTitle>
-            <p className="mb-12 text-center">{description}</p>
+            <div className="mb-12 text-center text-foreground-accent max-w-3xl mx-auto">{description}</div>
             {children}
         </section>
     )

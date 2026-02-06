@@ -23,7 +23,7 @@ export const benefits: IBenefit[] = [
                 icon: <FiTrendingUp size={26} />
             }
         ],
-        imageSrc: "/images/mockup-1.webp"
+        imageSrc: "/images/granja.jpg"
     },
     {
         title: "Nuestros servicios",
@@ -45,7 +45,7 @@ export const benefits: IBenefit[] = [
                 icon: <FiPieChart size={26} />
             }
         ],
-        imageSrc: "/images/mockup-2.webp"
+        imageSrc: "/images/servicios.jpg"
     },
     {
         title: "Equipo de desarrollo",
@@ -67,6 +67,6 @@ export const benefits: IBenefit[] = [
                 icon: <FiLock size={26} />
             }
         ],
-        imageSrc: "/images/mockup-1.webp"
+        imageSrc: "/images/Equipo.jpg"
     },
 ]
