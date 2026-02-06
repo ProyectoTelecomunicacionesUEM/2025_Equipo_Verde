@@ -1,4 +1,5 @@
-import { FiBarChart2, FiBriefcase, FiDollarSign, FiLock, FiPieChart, FiShield, FiTarget, FiTrendingUp, FiUser } from "react-icons/fi";
+import { FiUser } from "react-icons/fi";
+import { FaChartLine, FaWandMagicSparkles, FaGear, FaPaw, FaCow, FaSliders, FaClipboardCheck, FaUserTie } from "react-icons/fa6";
 
 import { IBenefit } from "@/types"
 
@@ -10,17 +11,17 @@ export const benefits: IBenefit[] = [
             {
                 title: "Objetivo Comercial",
                 description: "Facilitar la toma de decisiones para el cuidado animal.",
-                icon: <FiBarChart2 size={26} />
+                icon: <FaChartLine size={26} />
             },
             {
                 title: "Diseño",
                 description: "Una plataforma cómoda y fácil de usar para todos.",
-                icon: <FiUser size={26} />
+                icon: <FaWandMagicSparkles size={26} />
             },
             {
                 title: "Funcionalidad",
                 description: "Herramienta integral de gestión de datos y alertas.",
-                icon: <FiTrendingUp size={26} />
+                icon: <FaGear size={26} />
             }
         ],
         imageSrc: "/images/granja.jpg"
@@ -32,17 +33,17 @@ export const benefits: IBenefit[] = [
             {
                 title: "Mascotas y Exóticos",
                 description: "Collares y sensores para perros, gatos, aves y reptiles.",
-                icon: <FiTarget size={26} />
+                icon: <FaPaw size={26} />
             },
             {
                 title: "Animales de Granja",
                 description: "GPS y monitorización de salud para ganado.",
-                icon: <FiBriefcase size={26} />
+                icon: <FaCow size={26} />
             },
             {
                 title: "Planes Flexibles",
                 description: "¡Tú eliges los servicios, tú controlas el coste!",
-                icon: <FiPieChart size={26} />
+                icon: <FaSliders size={26} />
             }
         ],
         imageSrc: "/images/servicios.jpg"
@@ -54,7 +55,7 @@ export const benefits: IBenefit[] = [
             {
                 title: "Gestión y Calidad",
                 description: "Jessica Baidez (PO) y Claudia (Scrum Master).",
-                icon: <FiShield size={26} />
+                icon: <FaClipboardCheck size={26} />
             },
             {
                 title: "Desarrollo e Investigación",
@@ -64,7 +65,7 @@ export const benefits: IBenefit[] = [
             {
                 title: "Stakeholders",
                 description: "Flavio Grillo (Docente).",
-                icon: <FiLock size={26} />
+                icon: <FaUserTie size={26} />
             }
         ],
         imageSrc: "/images/Equipo.jpg"
